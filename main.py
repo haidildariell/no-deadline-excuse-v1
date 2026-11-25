@@ -1,44 +1,42 @@
 #!/usr/bin/env python3
-"""One-line excuse for a missed deadline.
+"""One-liner entry: One Line, No Deadline Met.
 
-Writes a single line of text to /output/entry.txt for the make.fun
-competition "One Line, No Deadline Met".
+Writes the winning one-liner to /output/entry.txt.
 Deterministic, no network, no dependencies.
 """
 
-import os
-import sys
-
-ENTRY = (
-    "I missed the deadline because I went to grab 'just one coffee' "
-    "and came back with a loyalty card, a muffin, and a full "
-    "conversation with a barista about his screenplay."
+ENTRY_PARTS = (
+    "I missed the deadline because I went to grab 'just one coffee' ",
+    "and came back with a loyalty card, a muffin, and a full ",
+    "conversation with a barista about his screenplay.",
 )
 
-OUTPUT_PATH = "/output/entry.txt"
+
+def build_entry_text() -> str:
+    """Assemble the entry text from its parts."""
+    return "".join(ENTRY_PARTS)
 
 
-def main() -> int:
-    text = ENTRY.strip()
+def validate_entry(text: str) -> None:
+    """Check the entry against the competition gate.
 
-    # Gate validation: non-blank, single line, 1-200 characters.
-    if not text:
-        print("error: entry is blank", file=sys.stderr)
-        return 1
+    The gate requires 1-200 characters, a single line, and
+    non-blank content.
+    """
+    if not text.strip():
+        raise ValueError("entry text must not be blank")
     if "\n" in text or "\r" in text:
-        print("error: entry must be a single line", file=sys.stderr)
-        return 1
+        raise ValueError("entry text must be a single line")
     if not 1 <= len(text) <= 200:
-        print(f"error: entry length {len(text)} outside 1-200", file=sys.stderr)
-        return 1
+        raise ValueError("entry text must be 1-200 characters")
 
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+
+def main() -> None:
+    text = build_entry_text()
+    validate_entry(text)
+    with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(text + "\n")
-
-    print(f"wrote {len(text)} chars to {OUTPUT_PATH}")
-    return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

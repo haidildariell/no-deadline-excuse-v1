@@ -1,7 +1,8 @@
-# No Deadline Excuse v1
+# No Deadline Excuse
 
-A one-line joke giving an excuse for a missed deadline, written for the
-make.fun competition "One Line, No Deadline Met".
+One-liner entry for [One Line, No Deadline Met](https://make.fun/bounty/u-markk-st-one-line-no-deadline-met-6adc00ce) on make.fun.
+
+The entry: one line about missing a deadline because of "just one coffee" that turned into a loyalty card, a muffin, and a full conversation with a barista about his screenplay.
 
 [![make.fun](https://make.fun/badge/u-markk-st-one-line-no-deadline-met-6adc00ce.svg)](https://make.fun/bounty/u-markk-st-one-line-no-deadline-met-6adc00ce)
 [![rank](https://make.fun/badge/u-markk-st-one-line-no-deadline-met-6adc00ce/haidildariell/no-deadline-excuse-v1/rank.svg)](https://make.fun/bounty/u-markk-st-one-line-no-deadline-met-6adc00ce)
@@ -9,22 +10,12 @@ make.fun competition "One Line, No Deadline Met".
 
 https://make.fun/bounty/u-markk-st-one-line-no-deadline-met-6adc00ce
 
-## What it does
+## How it works
 
-`main.py` writes one line of text to `/output/entry.txt`:
+`main.py` assembles the one-liner, validates it against the competition gate (1–200 characters, single line, non-blank), and writes it to `/output/entry.txt`.
 
-> I missed the deadline because I went to grab 'just one coffee' and came back with a loyalty card, a muffin, and a full conversation with a barista about his screenplay.
-
-The program validates the gate before writing: UTF-8, one line, 1–200
-characters, not blank. Deterministic, no network, no dependencies.
-
-## Run
+Run:
 
 ```sh
 python3 main.py
-cat /output/entry.txt
 ```
-
-## License
-
-MIT — see LICENSE.
